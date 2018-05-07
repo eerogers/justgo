@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Runner's Profile</title>
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel='stylesheet' href='/css/userprofile.css'>
+    <script src='https://code.jquery.com/jquery.js'></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+</head>
+<body>
+    <div class='container'>
+        <div class='row'>
+            <div class='card-panel z-depth-2 orange accent-3 white-text'>
+                <h3 class='center-align'>Runner's Profile Data</h3></div>
+        </div>
+        <div class='row'>
+            <!-- Display Panel -->
+            <div class='card-panel userInfo'>
+                <h4 class='center-align'>Current Runner</h4>
+                <table class="table striped center bordered responsive-table" id='UseTable'>
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Course</th>
+                            <th>Distance (miles)</th>
+                            <th>Time (minutes)</th>
+                            <th>Pace</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Info Submission Panel -->
+        <div class='row'>
+            <div class='card-panel'>
+                <h4 class='center-align'>Add Your Course</h4>
+                <form>
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" id="User NameInput">
+                        <label for="">User Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" id="destinationInput">
+                        <label for="">Course</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="time" class="validate" id="firstInput">
+                        <label class='active' for="">Distance (miles)</label>
+                    </div>                    
+                    <div class="input-field col s12">
+                        <input type="time" class="validate" id="firstInput">
+                        <label class='active' for="">Time (HH:mm Military Time)</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="number" class="validate" id="frequencyInput">
+                        <label for="">Date</label>
+                    </div>
+                    <button type="submit" class="btn orange accent-3" id="addUserBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/userprofile.js" type="text/javascript"></script>
+</body>
+</html>

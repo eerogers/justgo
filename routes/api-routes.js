@@ -36,8 +36,8 @@ module.exports = function(app) {
         });
     })
     //get route times based on user id and route id
-    app.get("/api/routes/:routeid/:userid", function (req, res) {
-        db.Route.findAll({
+    app.get("/api/times/:routeid/:userid", function (req, res) {
+        db.Time.findAll({
             where: {
                 route_id: req.params.routeid
             },

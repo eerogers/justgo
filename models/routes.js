@@ -9,10 +9,10 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true
         },
         name_of_route: DataTypes.STRING,
-        start_long: DataTypes.INTEGER,
-        start_lat: DataTypes.INTEGER,
-        end_long: DataTypes.INTEGER,
-        end_lat: DataTypes.INTEGER,
+        start_long: DataTypes.DECIMAL,
+        start_lat: DataTypes.DECIMAL,
+        end_long: DataTypes.DECIMAL,
+        end_lat: DataTypes.DECIMAL,
         group_name: DataTypes.STRING
     })
     return Route;
