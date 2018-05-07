@@ -11,6 +11,12 @@ module.exports = function(sequelize, DataTypes) {
         name_of_route: DataTypes.STRING,
         start_long: DataTypes.DECIMAL,
         start_lat: DataTypes.DECIMAL,
+        way_lat1: DataTypes.DECIMAL,
+        way_long1: DataTypes.DECIMAL,
+        way_lat2: DataTypes.DECIMAL,
+        way_long2: DataTypes.DECIMAL,
+        way_lat3: DataTypes.DECIMAL,
+        way_long3: DataTypes.DECIMAL,
         end_long: DataTypes.DECIMAL,
         end_lat: DataTypes.DECIMAL,
         group_name: DataTypes.STRING
