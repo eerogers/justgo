@@ -43,7 +43,7 @@ $(".box").on("click", function(){
     localStorage.setItem("routeId", $(this).attr("data"))
 })
 //probably all to be deleted below but keeping temporarily for reference
-href='/course'
+
 //.then(
 //function initMap(){
 //    console.log("initing?")
