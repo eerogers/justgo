@@ -4,6 +4,16 @@
 var db = require("../models")
 module.exports = function(app) {
     //gets-->
+    app.get("/api/users/:username", function(req, res) {
+        db.User.findAll({
+            where: {
+                user_name: req.params.username
+            }
+        }).then(function(results){
+            console.log(results)
+            res.json(results);
+        })
+    })
     app.get("/api/users/:id", function(req, res) {
         db.User.findAll({
             where: {
