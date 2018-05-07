@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-        route_id: DataTypes.STRING,
+        route_id: DataTypes.INTEGER,
         user_id: DataTypes.INTEGER,
         time: DataTypes.INTEGER
     })
