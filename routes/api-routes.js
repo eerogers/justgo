@@ -1,5 +1,5 @@
 //var Route = require("../models/routes.js");
-//var Time = require("../models/times.js");
+// var Time = require("../models/times.js");
 //var User = require("../models/users.js");
 var db = require("../models")
 module.exports = function(app) {
@@ -36,11 +36,8 @@ module.exports = function(app) {
         });
     })
     //get route times based on user id and route id
-    app.get("/api/routes/:routeid/:userid", function (req, res) {
+    app.get("/api/routes/:userid", function (req, res) {
         db.Route.findAll({
-            where: {
-                route_id: req.params.routeid
-            },
             where: {
                 user_id: req.params.userid
             }
@@ -49,6 +46,18 @@ module.exports = function(app) {
             res.json(results);
         });
     })
+
+    app.get('/api/times/:userid', function (req, res) {
+        db.Times.findAll({
+            where: {
+                user_id: req.params.userid
+            }, attributes: ['createdAt', 'distance'],
+        }).then(function(results) {
+            console.log(results)
+            res.json(results)
+        })
+    })
+
     //posts -->
     app.post("/api/routes/new", function(req, res) {
         db.Route.create({
