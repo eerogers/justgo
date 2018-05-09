@@ -4,6 +4,16 @@
 var db = require("../models")
 module.exports = function(app) {
     //gets-->
+    app.get("/api/users/:username", function(req, res) {
+        db.User.findAll({
+            where: {
+                user_name: req.params.username
+            }
+        }).then(function(results){
+            console.log(results)
+            res.json(results);
+        })
+    })
     app.get("/api/users/:id", function(req, res) {
         db.User.findAll({
             where: {
@@ -36,8 +46,12 @@ module.exports = function(app) {
         });
     })
     //get route times based on user id and route id
-    app.get("/api/routes/:userid", function (req, res) {
-        db.Route.findAll({
+  
+ //   app.get("/api/routes/:userid", function (req, res) {
+ //       db.Route.findAll({
+
+    app.get("/api/times/:routeid/:userid", function (req, res) {
+        db.Time.findAll({
             where: {
                 user_id: req.params.userid
             }
