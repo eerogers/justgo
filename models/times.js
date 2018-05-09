@@ -1,7 +1,7 @@
 //var Sequelize = require("sequelize");
 //var sequelize = require("../config/connection.js");
 module.exports = function(sequelize, DataTypes) {
-    var Time = sequelize.define("Time", {
+    var Times = sequelize.define("Times", {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -10,7 +10,9 @@ module.exports = function(sequelize, DataTypes) {
         },
         route_id: DataTypes.INTEGER,
         user_id: DataTypes.INTEGER,
-        time: DataTypes.INTEGER
+        time: DataTypes.INTEGER,
+        distance: DataTypes.INTEGER,
+        
     })
-    return Time;
+    return Times;
 }
