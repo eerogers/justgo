@@ -1,6 +1,6 @@
 $(document).ready (function(){
     //these are pre-set because we don't have sign-in or route select functions yet which should set these:
-    var id = localStorage.getItem("routeId")
+    var routeid = parseInt(localStorage.getItem("routeId"))
     var userid = 1
     $.get("/api/users/" + userid, function(data) {
         console.log(data)
@@ -13,14 +13,31 @@ $(document).ready (function(){
     var wayLong2 = 0
     var wayLat3 = 0
     var wayLong3 = 0
-    var atStart = false
+    var atStart = true
+    var atFinish = true
+    var startLat = 0
+    var startLong = 0
+    var endLat = 0
+    var endLong = 0
+    var isRunning = false
+    var newTime= {
+        routeId: routeid,
+        userId: userid,//localStorage.getItem("userid"),
+        time: 20,
+        distance: 20
+    }
+    console.log(newTime)
 
-    $.get("/api/routes/" +id, function(data) {
+    $.get("/api/routes/" +routeid, function(data) {
         console.log(data)
       //  for(i=0; i<data.length; i++){
             $("#map").append("<div id='1'>"+ data[0].name_of_route+"</div><div id='map1'</div>")
          //    console.log(waypnts)
-             var locationsArray = {startLat: parseFloat(data[0].start_lat), startLong: parseFloat(data[0].start_long), 
+            startLat =  parseFloat(data[0].start_lat)
+            startLong = parseFloat(data[0].start_long)
+            endLat = parseFloat(data[0].end_lat)
+            endLong = parseFloat(data[0].end_long)
+            var locationsArray = {startLat: parseFloat(data[0].start_lat), startLong: parseFloat(data[0].start_long), 
                                      endLat: parseFloat(data[0].end_lat), endLong: parseFloat(data[0].end_long)}
              directionsArray.push(locationsArray)
              console.log(directionsArray)
@@ -69,7 +86,12 @@ $(document).ready (function(){
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        var pos = {
+        posLat = position.coords.latitude
+        console.log(posLat)
+        posLong = position.coords.longitude
+        console.log(posLong)
+        checkLocation(posLat, posLong, startLat, startLong)
+        pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
@@ -103,18 +125,49 @@ $(document).ready (function(){
             }
             });
     }
-
+function checkLocation(posLat, posLong){
+    console.log(posLat, posLong)
+    console.log(startLat, startLong)   
+    if(posLat == startLat && posLong == startLong){
+        atStart = true
+    }
+    if(posLat == endLat && posLong == endLong){
+        atFinish = true
+    } 
+}
+function checkStatus(){
+    if (atStart == false){
+        $("#advance").text("Please advance to the start location to begin!")
+        $("#start").css("opacity","0.5")
+    }
+    if (atStart){
+        $("#start").css("opacity","1")
+    }
+    if(atStart || isRunning) {
+        $("#advance").empty()
+    }
+    if (atFinish){
+        $("#finish").css("visibility", "visible")
+    }
+} checkStatus()
 $("#start").on("click", function(){
+    checkStatus()
     if(atStart) {
-        
+        isRunning = true
+        console.log("RUN!")
+        $("#running").text("Your time has begun!")
+        $("#cancel").css("visibility", "visible")
     }
 })
+
 $("#finish").on("click", function(){
-    $.post("/api/times/new"), function(data){
-            
-    }
+    $.post("/api/times/new", newTime)
+    .then(function(data){
+        console.log(data)
+    })
 })
 $("#cancel").on("click", function(){
-    
+    isRunning = false
+    $("#cancel").css("visibility", "hidden")
 })
 })

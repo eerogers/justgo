@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Run!';
+  src: url('Run.ttf');
+}
+.moveables {
+  margin: 0px 5px 0px 5px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 3px;
+}
+#start {
+  opacity: 0.5;
+}
+#finish {
+  visibility: hidden;
+}
+#cancel {
+  visibility: hidden;
+}
 #map {
     border-style: solid;
     border-width: 1px;
@@ -32,7 +50,7 @@
     margin-left: 14%;
   }
   
-  .g-contrainer, .g-iconmenu, .g-iconmenu-text {
+  .g-container, .g-iconmenu, .g-iconmenu-text {
     text-align: center;
     border-right: 1px solid #353535;
     border-radius: 0; 
