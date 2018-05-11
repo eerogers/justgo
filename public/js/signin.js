@@ -6,6 +6,35 @@ var username = $("#uname").val
 $("#submit").on("click", function(){
     console.log(username)
 })
+
+ //Capture button click
+ $("#add-user").on("click", function(event) {
+    //prevent form from trying to submit/refresh the page
+    event.preventDefault();
+
+    //Capture User iNputs and store them into variables
+    var userName = $('#username-input').val().trim();
+    var password = $('#password-input').val().trim();
+
+    localStorage.setItem('userName', username)
+    localStorage.setItem('password', password)
+
+    //Console log each of the user inputs to confirm we are receiving them
+    console.log(userName);
+    console.log(password);
+
+    //Output all of the new information into the relevant HTML sections
+    $("#userName-display").text(localStorage.getItem("username"));
+    $("#password-display").text(localStorage.getItem("password"));
+    
+    if(userName.value !== storeduserName || password.value !== storedpassword) {
+        alert('ERROR');
+    }else {
+        alert('You are logged in.');
+    }
+}); 
+
+
 //$.get("/api/users/" + username, function(data) {
 //    userid = data.id
 //    console.log(userid)

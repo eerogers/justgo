@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Run!';
+    src: url('Run.ttf');
+}
+
+#logo-6455-particle {
+    font-family: 'Run!';
+    font-size: 300%;
+}
+
 #map {
     border-style: solid;
     border-width: 1px;
@@ -10,11 +20,7 @@
     border-color: pink;
     float: left;
 }
-#logo-6455-particle {
-    font-family: 'Run!';
-    src: url('Run!.ttf');
-    font-size: 300%;
-}  
+ 
 .g-header {
     margin-right: 14%;
     margin-left: 14%;
