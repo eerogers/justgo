@@ -26,13 +26,14 @@ $("#submit").on("click", function(){
     //Output all of the new information into the relevant HTML sections
     $("#userName-display").text(localStorage.getItem("username"));
     $("#password-display").text(localStorage.getItem("password"));
+    
+    if(userName.value !== storeduserName || password.value !== storedpassword) {
+        alert('ERROR');
+    }else {
+        alert('You are logged in.');
+    }
 }); 
 
-if(userName.value !== storeduserName || password.value !== storedpassword) {
-    alert('ERROR');
-}else {
-    alert('You are logged in.');
-}
 
 //$.get("/api/users/" + username, function(data) {
 //    userid = data.id
