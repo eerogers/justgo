@@ -28,7 +28,7 @@ img {
 }
 #logo-6455-particle {
   font-family: 'Run!';
-  src: url('Run!.ttf');
+  src: url('./images/Run!.ttf');
   font-size: 300%;
 }
 

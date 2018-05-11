@@ -13,6 +13,8 @@ $(document).ready (function(){
     var wayLong2 = 0
     var wayLat3 = 0
     var wayLong3 = 0
+    var atStart = false
+
     $.get("/api/routes/" +id, function(data) {
         console.log(data)
       //  for(i=0; i<data.length; i++){
@@ -39,22 +41,53 @@ $(document).ready (function(){
                 zoom:10,
                 center: irvine
             }
-    var map = new google.maps.Map(document.getElementById('map1'), mapOptions)
-    var waypnts = []
-    waypnts.push({
-        location: new google.maps.LatLng(wayLat1, wayLong1),
-        stopover: true,
-    }) 
-    waypnts.push({
-        location: new google.maps.LatLng(wayLat2, wayLong2),
-        stopover: true,
-    })
-    waypnts.push({
-        location: new google.maps.LatLng(wayLat3, wayLong3),
-        stopover: true,
-    })
+            var map = new google.maps.Map(document.getElementById('map1'), mapOptions)
+            var waypnts = []
+            waypnts.push({
+                location: new google.maps.LatLng(wayLat1, wayLong1),
+                stopover: true,
+            }) 
+            waypnts.push({
+                location: new google.maps.LatLng(wayLat2, wayLong2),
+                stopover: true,
+            })
+            waypnts.push({
+                location: new google.maps.LatLng(wayLat3, wayLong3),
+                stopover: true,
+            })
+    infoWindow = new google.maps.InfoWindow;
+    // for geolocation errors:
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+      infoWindow.open(map);
+      $('#map1').html('<h2>Please allow geolocation.</h2>')
+
+    }
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        infoWindow.setPosition(pos);
+        console.log(pos)
+        infoWindow.setContent('You Are Here');
+        infoWindow.open(map);
+        map.setCenter(pos);
+        map.setZoom(15)
+      }, function () {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
     createMaps(map, waypnts)
-    })
+})
     function createMaps(map, waypnts){
         directionsDisplay.setMap(map);
             var request = {
@@ -70,4 +103,18 @@ $(document).ready (function(){
             }
             });
     }
-    })
+
+$("#start").on("click", function(){
+    if(atStart) {
+        
+    }
+})
+$("#finish").on("click", function(){
+    $.post("/api/times/new"), function(data){
+            
+    }
+})
+$("#cancel").on("click", function(){
+    
+})
+})
