@@ -13,10 +13,10 @@ $("#submit").on("click", function(){
     event.preventDefault();
 
     //Capture User iNputs and store them into variables
-    var userName = $('#username-input').val().trim();
-    var password = $('#password-input').val().trim();
+    var userName = $('#usernamecreate').val().trim();
+    var password = $('#psw').val().trim();
 
-    localStorage.setItem('userName', username)
+    localStorage.setItem('userName', userName)
     localStorage.setItem('password', password)
 
     //Console log each of the user inputs to confirm we are receiving them
