@@ -16,7 +16,7 @@ var wayLong3 = 0
 $.get("/api/routes/" +id, function(data) {
     console.log(data)
   //  for(i=0; i<data.length; i++){
-        $("#map").append("<div id='1'>"+ data[0].name_of_route+"</div><div id='map1'</div>")
+        $("#map").append("<div id='1'><h2>"+ data[0].name_of_route+"</h2></div><div id='map1'</div>")
      //    console.log(waypnts)
          var locationsArray = {startLat: parseFloat(data[0].start_lat), startLong: parseFloat(data[0].start_long), 
                                  endLat: parseFloat(data[0].end_lat), endLong: parseFloat(data[0].end_long)}

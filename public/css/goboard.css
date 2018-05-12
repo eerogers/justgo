@@ -2,24 +2,35 @@
   font-family: 'Run!';
   src: url('Run.ttf');
 }
+
+#logo-6455-particle {
+  font-family: 'Run!';
+  font-size: 300%;
+}
+
 .moveables {
   margin: 0px 5px 0px 5px;
   padding: 5px 10px 5px 10px;
   border-radius: 3px;
 }
+
 #start {
   opacity: 0.5;
 }
+
 #finish {
   visibility: hidden;
 }
+
 #cancel {
   visibility: hidden;
 }
-#map {
+
+/* #map {
     border-style: solid;
     border-width: 1px;
-}
+} */
+
 #map1 {
     height: 600px;
     width: 100%;
@@ -29,42 +40,36 @@
     float: left;
     border-radius: 10px;
 }
-#logo-6455-particle {
-    font-family: 'Run!';
-    src: url('Run!.ttf');
-    font-size: 300%;
-  }
-  
-  .g-header {
-    margin-right: 14%;
-    margin-left: 14%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-  }
-  
-  .g-grid {
-    margin-right: 14%;
-    margin-left: 14%;
-  }
-  
-  .g-container, .g-iconmenu, .g-iconmenu-text {
-    text-align: center;
-    border-right: 1px solid #353535;
-    border-radius: 0; 
-    padding-right: -120%;
-  }
-  
-  #iconmenu-3171-particle {
-    text-align: center;
-  }
-  
-  .g-block.size-44 {
-    width: 100%;
-  }
-  
-  .g-block.size-56 {
-    width: 100%;
-  }
+
+.g-header {
+  margin-right: 14%;
+  margin-left: 14%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+}
+
+.g-grid {
+  margin-right: 14%;
+  margin-left: 14%;
+}
+
+.g-container, .g-iconmenu, .g-iconmenu-text {
+  text-align: center;
+  border-radius: 0; 
+  padding-right: -120%;
+}
+
+#iconmenu-3171-particle {
+  text-align: center;
+}
+
+.g-block.size-44 {
+  width: 100%;
+}
+
+.g-block.size-56 {
+  width: 100%;
+}
