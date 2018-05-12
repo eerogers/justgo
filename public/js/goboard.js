@@ -31,7 +31,7 @@ $(document).ready (function(){
     $.get("/api/routes/" +routeid, function(data) {
         console.log(data)
       //  for(i=0; i<data.length; i++){
-            $("#map").append("<div id='1'>"+ data[0].name_of_route+"</div><div id='map1'</div>")
+            $("#map").append("<div id='1'><h2>"+ data[0].name_of_route+"<h2></div><div id='map1'</div>")
          //    console.log(waypnts)
             startLat =  parseFloat(data[0].start_lat)
             startLong = parseFloat(data[0].start_long)
