@@ -10,8 +10,13 @@ module.exports = function(sequelize, DataTypes) {
         },
         route_id: DataTypes.INTEGER,
         user_id: DataTypes.INTEGER,
-        time: DataTypes.INTEGER,
-        distance: DataTypes.INTEGER,
+        date: DataTypes.STRING,
+        start_time: DataTypes.STRING,
+        end_time: DataTypes.STRING,
+        distance: DataTypes.DECIMAL,
+        run_code: DataTypes.STRING,
+        finished: DataTypes.BOOLEAN,
+        route_name: DataTypes.STRING
         
     })
     return Times;

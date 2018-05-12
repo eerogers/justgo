@@ -19,7 +19,8 @@ module.exports = function(sequelize, DataTypes) {
         way_long3: DataTypes.DECIMAL,
         end_long: DataTypes.DECIMAL,
         end_lat: DataTypes.DECIMAL,
-        group_name: DataTypes.STRING
+        group_name: DataTypes.STRING,
+        distance: DataTypes.DECIMAL
     })
     return Route;
 }

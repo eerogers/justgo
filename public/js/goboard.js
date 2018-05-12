@@ -1,7 +1,8 @@
 $(document).ready (function(){
     //these are pre-set because we don't have sign-in or route select functions yet which should set these:
+
     var routeid = parseInt(localStorage.getItem("routeId"))
-    var userid = 1
+    var userid = parseInt(localStorage.getItem("userId"))
     $.get("/api/users/" + userid, function(data) {
         console.log(data)
         //data returns user info based on id
@@ -13,26 +14,31 @@ $(document).ready (function(){
     var wayLong2 = 0
     var wayLat3 = 0
     var wayLong3 = 0
-    var atStart = true
-    var atFinish = true
     var startLat = 0
     var startLong = 0
     var endLat = 0
     var endLong = 0
-    var isRunning = false
+    var atStart = true
+    var atFinish = true
     var newTime= {
         routeId: routeid,
-        userId: userid,//localStorage.getItem("userid"),
-        time: 20,
-        distance: 20
+        userId: userid,
+        date: "",
+        startTime: 0,
+        distance: 0,
+        runCode: "",
+        finished: false
+    }
+    var finishRun = {
+        endTime: 0,
+        runCode: "",
+        routeId: 0
     }
     console.log(newTime)
 
     $.get("/api/routes/" +routeid, function(data) {
         console.log(data)
-      //  for(i=0; i<data.length; i++){
             $("#map").append("<div id='1'>"+ data[0].name_of_route+"</div><div id='map1'</div>")
-         //    console.log(waypnts)
             startLat =  parseFloat(data[0].start_lat)
             startLong = parseFloat(data[0].start_long)
             endLat = parseFloat(data[0].end_lat)
@@ -48,7 +54,8 @@ $(document).ready (function(){
             wayLong2 = data[0].way_long2
             wayLat3 = data[0].way_lat3
             wayLong3 = data[0].way_long3
-     //}
+            newTime.distance = parseFloat(data[0].distance)
+            console.log(newTime)
     }).then(
         function initMap(){
             directionsService = new google.maps.DirectionsService();
@@ -109,6 +116,7 @@ $(document).ready (function(){
       handleLocationError(false, infoWindow, map.getCenter());
     }
     createMaps(map, waypnts)
+    checkStatus()
 })
     function createMaps(map, waypnts){
         directionsDisplay.setMap(map);
@@ -136,38 +144,69 @@ function checkLocation(posLat, posLong){
     } 
 }
 function checkStatus(){
-    if (atStart == false){
+    console.log("atStart" + atStart)
+    console.log("atFinish" + atFinish)
+    conversion = Boolean.valueOf(localStorage.getItem("isRunning"))()
+    if (typeof(conversion) == "boolean"){
+        console.log("booooolean")
+        isRunning = conversion
+        console.log(typeof(conversion))
+        console.log("isrunning" + conversion)
+    } else {
+        isRunning = false
+    }
+    if (atStart == false && isRunning == false){
         $("#advance").text("Please advance to the start location to begin!")
         $("#start").css("opacity","0.5")
     }
     if (atStart){
         $("#start").css("opacity","1")
     }
-    if(atStart || isRunning) {
-        $("#advance").empty()
+    if (conversion){
+        $("#cancel").css("visibility", "visible")
     }
     if (atFinish){
         $("#finish").css("visibility", "visible")
     }
-} checkStatus()
+}
 $("#start").on("click", function(){
-    checkStatus()
     if(atStart) {
-        isRunning = true
+        localStorage.setItem("isRunning", true)
+        checkStatus()
         console.log("RUN!")
         $("#running").text("Your time has begun!")
         $("#cancel").css("visibility", "visible")
+        newTime.date = moment().format('YYYY-MM-DD')
+        newTime.startTime = moment().format('HH:mm:ss')
+        newTime.runCode = Math.random().toString(36).substr(2, 5)
+        localStorage.setItem("runCode", newTime.runCode)
+        console.log(newTime)
+        console.log(finishRun)
+        $.post('/api/times/new', newTime)
+        .then(function(data){
+            console.log(data)
+        })
     }
 })
 
 $("#finish").on("click", function(){
-    $.post("/api/times/new", newTime)
+    finishRun.endTime = moment().format('HH:mm:ss')
+    finishRun.runCode = localStorage.getItem("runCode")
+    finishRun.routeId = localStorage.getItem("routeId")
+    console.log (finishRun)
+    $.post("/api/times/update", finishRun)
     .then(function(data){
         console.log(data)
     })
+    $("#running").empty()
+    $("#cancel").css("visibility", "hidden")
+
 })
 $("#cancel").on("click", function(){
     isRunning = false
+    localStorage.setItem("isRunning", false)
     $("#cancel").css("visibility", "hidden")
+    localStorage.removeItem("runCode")
+    $("#running").empty()
 })
 })

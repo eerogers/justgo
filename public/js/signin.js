@@ -52,13 +52,16 @@ $("#submit").on("click", function(){
                 console.log(userName);
                 console.log(password);
                 logId(userName)
-            
         }
     })
     function logId(userName){
         $.get("/api/users/" + userName, function(data){
+            console.log(data[0].id)
             localStorage.setItem('userId', data[0].id)
         })
+        $("#usernamecreate").val("")
+        $("#psw").val("")
+        $("#psw-repeat").val("")
     }
 
    
