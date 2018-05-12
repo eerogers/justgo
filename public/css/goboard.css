@@ -8,6 +8,10 @@
   font-size: 300%;
 }
 
+.g-navigation {
+  overflow: auto;
+}
+
 .moveables {
   margin: 0px 5px 0px 5px;
   padding: 5px 10px 5px 10px;
