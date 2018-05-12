@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
         },
         name: DataTypes.STRING,
         user_name: DataTypes.STRING,
-        starred_route_id: DataTypes.INTEGER
+        starred_route_id: DataTypes.INTEGER,
+        password: DataTypes.STRING
     })
     return User;
 }

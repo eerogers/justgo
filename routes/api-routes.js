@@ -97,9 +97,8 @@ module.exports = function(app) {
     })
     app.post("/api/users/new", function(req, res) {
         db.User.create({
-            name: req.body.name,
-            starred_route: req.body.starredRoute,
-            user_name: req.body.userName
+            user_name: req.body.userName,
+            password: req.body.password
         })
     })
 };
