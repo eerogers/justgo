@@ -51,9 +51,11 @@ module.exports = function(app) {
  //       db.Route.findAll({
 
     app.get("/api/times/:routeid/:userid", function (req, res) {
-        db.Time.findAll({
+        db.Times.findAll({
             where: {
-                user_id: req.params.userid
+                user_id: req.params.userid,
+                route_id: req.params.routeid,
+                finished: true
             }
         }).then(function(results) {
             console.log(results)
@@ -64,8 +66,9 @@ module.exports = function(app) {
     app.get('/api/times/:userid', function (req, res) {
         db.Times.findAll({
             where: {
-                user_id: req.params.userid
-            }, attributes: ['createdAt', 'distance'],
+                user_id: req.params.userid,
+                finished: true
+            }, //attributes: ['date', 'distance'],
         }).then(function(results) {
             console.log(results)
             res.json(results)
@@ -91,14 +94,30 @@ module.exports = function(app) {
         db.Times.create({
             route_id: req.body.routeId,
             user_id: req.body.userId,
-            time: req.body.time,
-            distance: req.body.distance
+            date: req.body.date,
+            start_time: req.body.startTime,
+            distance: req.body.distance,
+            run_code: req.body.runCode,
+            finished: req.body.finished
         })
     })
     app.post("/api/users/new", function(req, res) {
         db.User.create({
             user_name: req.body.userName,
             password: req.body.password
+        })
+    })
+    app.post("/api/times/update", function(req, res){
+        db.Times.update({
+            end_time: req.body.endTime,
+            finished: true,
+        },
+        {
+            where: {
+                run_code: req.body.runCode,
+                finished: false,
+                route_id: req.body.routeId
+            }
         })
     })
 };
