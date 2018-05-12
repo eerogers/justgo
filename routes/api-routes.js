@@ -88,17 +88,17 @@ module.exports = function(app) {
           });
         });
     app.post("/api/times/new", function(req, res) {
-        db.Time.create({
+        db.Times.create({
             route_id: req.body.routeId,
             user_id: req.body.userId,
-            time: req.body.time
+            time: req.body.time,
+            distance: req.body.distance
         })
     })
     app.post("/api/users/new", function(req, res) {
         db.User.create({
-            name: req.body.name,
-            starred_route: req.body.starredRoute,
-            user_name: req.body.userName
+            user_name: req.body.userName,
+            password: req.body.password
         })
     })
 };
