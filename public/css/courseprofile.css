@@ -8,10 +8,11 @@
     font-size: 300%;
 }
 
-#map {
+/* #map {
     border-style: solid;
     border-width: 1px;
-}
+} */
+
 #map1 {
     height: 600px;
     width: 100%;
@@ -35,22 +36,26 @@
     z-index: 9999;
     width: 100%;
 }      
+
 .g-grid {
     margin-right: 14%;
     margin-left: 14%;
 } 
+
 .g-container, .g-iconmenu, .g-iconmenu-text {
     text-align: center;
-    border-right: 1px solid #353535;
     border-radius: 0; 
     padding-right: -120%;
 }
+
 #iconmenu-3171-particle {
     text-align: center;
 }      
+
 .g-block.size-44 {
     width: 100%;
 }     
+
 .g-block.size-56 {
     width: 100%;
 }
