@@ -1,4 +1,4 @@
-# justgo
+# JustGo!
 Track your runs! Users can choose from pre-set courses, follow the map directions, and store their run time, pace, and distance. Users can view their activity history to track their improvement over time. Future development will include the ability to build personal courses.
 
 ## Built With
