@@ -8,7 +8,7 @@ $.get('/api/times/'+userid, function(data) {
 //	console.log(data[12].start_time)
 //	console.log(moment.duration(data[12].end_time.diff(data[12].start_time)).format("m[m] s[s]"))
 	for(var i = 0; i < data.length; i++) {
-		dps.push({'x': new Date(data[i].date), 'y': parseInt(data[i].distance)})
+		dps.push({'x': new Date(data[i].date), 'y': parseFloat(data[i].distance)})
 		console.log(data[i].createdAt)
 		console.log(data[i].distance)
 		$('#course').append("<div class='height'>"+ data[i].route_id +"</div>")
