@@ -12,7 +12,7 @@ Track your runs! Users can choose from pre-set courses, follow the map direction
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 ## Authors
-* **Elizabeth Rogers** - *Backend* - [eerogers](https://github.com/eerogers)
-* **Robert McDougal** - *Frontend HTML/CSS* - [mcdougalbugle](https://github.com/mcdougalbugle)
-* **Steve Foster** - *Frontend HTML/CSS* - [sfoster2008](https://github.com/sfoster2008)
-* **Veronica Przybyl** - *CanvasJS* - [hurricaneronron](https://github.com/hurricaneronron)
+* **Elizabeth Rogers** - *Backend, Database, Mapping Functionality* - [eerogers](https://github.com/eerogers)
+* **Robert McDougal** - *Frontend Design, Custom Layout, Logo* - [mcdougalbugle](https://github.com/mcdougalbugle)
+* **Steve Foster** - *Preset Custom Courses, User Login* - [sfoster2008](https://github.com/sfoster2008)
+* **Veronica Przybyl** - *Data Visualization, Frontend Consistency* - [hurricaneronron](https://github.com/hurricaneronron)
