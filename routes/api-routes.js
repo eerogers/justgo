@@ -67,8 +67,8 @@ module.exports = function(app) {
         db.Times.findAll({
             where: {
                 user_id: req.params.userid,
-                finished: true
-            }, //attributes: ['date', 'distance'],
+                finished: 0
+            }, //attributes: ['createdAt', 'distance'],
         }).then(function(results) {
             console.log(results)
             res.json(results)
